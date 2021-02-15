@@ -16,17 +16,12 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->unsignedBigInteger('service_id')->nullable();
+            $table->unsignedTinyInteger('service_type')->nullable();
 
             $table->unsignedBigInteger('imageable_id');
             $table->string('imageable_type');
 
             $table->timestamps();
-
-            $table->foreign('service_id')
-                ->references('id')
-                ->on('services')
-                ->onDelete('set null');
         });
     }
 
