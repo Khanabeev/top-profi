@@ -41,6 +41,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Master::class, 'favorite_master');
     }
 
+    /**
+     * @param array $ids
+     */
     public function addFavoriteMasters(array $ids)
     {
         if (is_array($ids))
@@ -53,6 +56,9 @@ class User extends Authenticatable
         $this->favoriteMasters()->attach($ids->diff($existing_ids));
     }
 
+    /**
+     * @param array $ids
+     */
     public function removeFavoriteMasters(array $ids)
     {
         $this->favoriteMasters()->detach($ids);

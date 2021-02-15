@@ -16,8 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            ServiceSeeder::class
+        ]);
+
         User::factory(10)->create();
         Master::factory(10)->create();
+
+
 
     }
 }

@@ -32,6 +32,7 @@ class Master extends Model
     const STATUS_ACTIVE_UNPAID = 2;
     const STATUS_MODERATION = 3;
     const STATUS_BANNED = 4;
+    const STATUS_PAUSED = 5;
 
     const GENDER_FEMALE = 1;
     const GENDER_MALE = 2;
@@ -50,5 +51,10 @@ class Master extends Model
     public function photos(): MorphMany
     {
         return $this->morphMany(Photo::class, 'imageable');
+    }
+
+    public function services()
+    {
+        return $this->morphToMany(Service::class, 'serviceable');
     }
 }

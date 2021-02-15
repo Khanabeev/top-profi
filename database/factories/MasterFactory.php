@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Master;
 
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -69,6 +70,14 @@ class MasterFactory extends Factory
             }
 
             for ($i = 0; $i < 3; $i++) {
+                $service = Service::inRandomOrder()->first();
+                $master->services()->attach($service->id, [
+                    'name' => $this->faker->sentence(4),
+                    'price' => $this->faker->numberBetween(10000, 1000000)
+                ]);
+            }
+
+            for ($i = 0; $i < 3; $i++) {
                 $review = $master->reviews()->create([
                     "user_id" => User::inRandomOrder()->first()->id,
                     "rating" => $this->faker->numberBetween(1, 5),
@@ -79,6 +88,8 @@ class MasterFactory extends Factory
                     'url' => 'https://picsum.photos/200/300'
                 ]);
             }
+
+
         });
     }
 }
