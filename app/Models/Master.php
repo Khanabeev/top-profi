@@ -53,8 +53,11 @@ class Master extends Model
         return $this->morphMany(Photo::class, 'imageable');
     }
 
-    public function services()
+    /**
+     * @return MorphMany
+     */
+    public function services(): MorphMany
     {
-        return $this->morphToMany(Service::class, 'serviceable');
+        return $this->morphMany(Service::class, 'serviceable');
     }
 }

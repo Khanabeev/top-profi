@@ -15,9 +15,15 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('serviceable_id');
+            $table->string('serviceable_type');
+
+            $table->unsignedTinyInteger('service_type')->nullable();
             $table->string('name');
-            $table->string('type');
+            $table->unsignedBigInteger('price');
             $table->boolean('is_active')->default(true);
+
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Service extends Model
 {
@@ -15,8 +16,14 @@ class Service extends Model
         'is_active'
     ];
 
-    public function masters()
+    const SERVICE_MANICURE = 1;
+    const SERVICE_PEDICURE = 2;
+
+    /**
+     * @return MorphTo
+     */
+    public function serviceable(): MorphTo
     {
-        return $this->morphedByMany(Master::class, 'serviceable');
+        return $this->morphTo();
     }
 }

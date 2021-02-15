@@ -70,8 +70,8 @@ class MasterFactory extends Factory
             }
 
             for ($i = 0; $i < 3; $i++) {
-                $service = Service::inRandomOrder()->first();
-                $master->services()->attach($service->id, [
+                $master->services()->create([
+                    'service_type' => $this->faker->numberBetween(1,2),
                     'name' => $this->faker->sentence(4),
                     'price' => $this->faker->numberBetween(10000, 1000000)
                 ]);

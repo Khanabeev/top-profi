@@ -15,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+    $m = \App\Models\Master::first();
+    foreach($m->reviews as $review) {
+        dd($review->rating);
+    }
+    dd($m->services, $m->photos, $m->reviews);
+
     return json_encode(['Hello']);
 });
