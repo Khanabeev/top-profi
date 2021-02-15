@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Master extends Model
 {
     use HasFactory;
-
-    protected $table = "masters";
 
     protected $fillable = [
         "name",
@@ -36,4 +35,20 @@ class Master extends Model
 
     const GENDER_FEMALE = 1;
     const GENDER_MALE = 2;
+
+    /**
+     * @return MorphMany
+     */
+    public function reviews(): MorphMany
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    /**
+     * @return MorphMany
+     */
+    public function photos(): MorphMany
+    {
+        return $this->morphMany(Photo::class, 'imageable');
+    }
 }
