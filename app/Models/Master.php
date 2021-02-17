@@ -60,4 +60,12 @@ class Master extends Model
     {
         return $this->morphMany(Service::class, 'serviceable');
     }
+
+    /**
+     * @return MorphMany
+     */
+    public function locations(): MorphMany
+    {
+        return $this->morphMany(Location::class, 'locatable');
+    }
 }
