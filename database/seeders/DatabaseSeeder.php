@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Master;
-use App\Models\Review;
+use App\Models\Salon;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(10)->create();
+        Salon::factory(10)->create();
         Master::factory(10)->create();
+
     }
 }

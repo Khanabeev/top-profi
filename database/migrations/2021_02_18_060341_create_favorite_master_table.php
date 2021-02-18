@@ -14,19 +14,18 @@ class CreateFavoriteMasterTable extends Migration
     public function up()
     {
         Schema::create('favorite_master', function (Blueprint $table) {
-            $table->index(['user_id', 'master_id']);
-
-            $table->unsignedBigInteger('user_id');
+            $table->id();
             $table->unsignedBigInteger('master_id');
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
 
             $table->foreign('master_id')
                 ->references('id')
                 ->on('masters')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->onDelete('cascade');
         });
     }

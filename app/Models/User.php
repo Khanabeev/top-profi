@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\HasReviews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasReviews;
 
     /**
      * The attributes that are mass assignable.
@@ -53,7 +52,8 @@ class User extends Authenticatable
             ->whereIn('master_id', $ids)
             ->pluck('master_id');
 
-        $this->favoriteMasters()->attach($ids->diff($existing_ids));
+        if($res = $ids->diff($existing_ids))
+            $this->favoriteMasters()->attach($res);
     }
 
     /**
@@ -63,14 +63,5 @@ class User extends Authenticatable
     {
         $this->favoriteMasters()->detach($ids);
     }
-
-    /**
-     * @return MorphToMany
-     */
-    public function reviews(): MorphToMany
-    {
-        return $this->morphToMany(Review::class, 'reviewable');
-    }
-
 
 }

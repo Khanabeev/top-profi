@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasPhotos;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Review extends Model
 {
-    use HasFactory;
+    use HasFactory, HasPhotos;
 
     protected $fillable = [
         "user_id",
@@ -29,13 +30,5 @@ class Review extends Model
     public function reviewable(): MorphTo
     {
         return $this->morphTo();
-    }
-
-    /**
-     * @return MorphMany
-     */
-    public function photos(): MorphMany
-    {
-        return $this->morphMany(Photo::class, 'imageable');
     }
 }

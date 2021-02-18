@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Master extends Model
+class Salon extends Model
 {
     use HasFactory,
         HasPhotos,
@@ -28,13 +28,11 @@ class Master extends Model
         "password",
         "status",
         "photo",
-        "gender",
         "description",
         "experience_from",
         "is_working_with_men",
         "has_single_use_items",
         "instagram",
-        "education",
         "phone_number",
         "has_whatsapp",
         "materials"
@@ -46,14 +44,13 @@ class Master extends Model
     const STATUS_BANNED = 4;
     const STATUS_PAUSED = 5;
 
-    const GENDER_FEMALE = 1;
-    const GENDER_MALE = 2;
-
     /**
      * @return BelongsToMany
      */
-    public function salons(): BelongsToMany
+    public function masters(): BelongsToMany
     {
-        return $this->belongsToMany(Salon::class);
+        return $this->belongsToMany(Master::class);
     }
+
+
 }

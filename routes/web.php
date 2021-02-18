@@ -15,11 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $m = \App\Models\Master::first();
-    foreach($m->reviews as $review) {
-        dd($review->rating);
-    }
-    dd($m->services, $m->photos, $m->reviews);
+    $user = \App\Models\User::query()->first();
 
-    return json_encode(['Hello']);
+    return json_encode($user->favoriteMasters);
 });

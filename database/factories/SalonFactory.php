@@ -3,24 +3,21 @@
 namespace Database\Factories;
 
 use App\Models\City;
-use App\Models\Master;
-
 use App\Models\Salon;
 use App\Models\Schedule;
-use App\Models\Service;
 use App\Models\User;
 use App\Models\Workplace;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
-class MasterFactory extends Factory
+class SalonFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Master::class;
+    protected $model = Salon::class;
 
     /**
      * Define the model's default state.
@@ -35,17 +32,10 @@ class MasterFactory extends Factory
             'password' => Hash::make('123123123'),
             'status' => $this->faker->randomElement([1, 2, 3, 4]),
             'photo' => 'http://via.placeholder.com/640x360',
-            'gender' => 1,
             'description' => $this->faker->sentence(30),
-            'experience_from' => $this->faker->dateTimeBetween('-10 years'),
             'is_working_with_men' => $this->faker->boolean(80),
             'has_single_use_items' => $this->faker->boolean(80),
             'instagram' => 'https://www.instagram.com/stasyq.girls/',
-            'education' => json_encode([
-                'Краснодарская школа искусств',
-                'Школа Иванова Иван Иваныча в Московской гостинице',
-                'American Star MayCaper 2000'
-            ]),
             'phone_number' => $this->faker->phoneNumber,
             'has_whatsapp' => $this->faker->boolean(80),
             'materials' => json_encode([
@@ -64,14 +54,13 @@ class MasterFactory extends Factory
      */
     public function configure()
     {
-        return $this->afterMaking(function (Master $master) {
+        return $this->afterMaking(function (Salon $salon) {
             //
-        })->afterCreating(function (Master $master) {
+        })->afterCreating(function (Salon $salon) {
 
-            $master->workplaces()->create([
+            $salon->workplaces()->create([
                 'place' => $this->faker->randomElement([
                         Workplace::AT_BEAUTY_SALON,
-                        Workplace::AT_MY_HOME,
                         Workplace::AT_YOUR_HOME
                     ]
                 )
@@ -80,7 +69,7 @@ class MasterFactory extends Factory
             $schedules = [
                 [
                     'day' => Schedule::MONDAY,
-                    'open_time' => 540,
+                    'open_time' => 510,
                     'close_time' => 1080
                 ],
                 [
@@ -106,11 +95,11 @@ class MasterFactory extends Factory
             ];
 
             foreach ($schedules as $schedule) {
-                $master->schedules()->create($schedule);
+                $salon->schedules()->create($schedule);
             }
 
 
-            $master->locations()->create([
+            $salon->locations()->create([
                 "lat" => $this->faker->latitude,
                 "lng" => $this->faker->longitude,
                 "city_id" => City::query()->inRandomOrder()->first()->id,
@@ -118,13 +107,13 @@ class MasterFactory extends Factory
             ]);
 
             for ($i = 0; $i < 5; $i++) {
-                $master->photos()->create([
+                $salon->photos()->create([
                     'url' => 'https://picsum.photos/200/300'
                 ]);
             }
 
             for ($i = 0; $i < 3; $i++) {
-                $master->services()->create([
+                $salon->services()->create([
                     'service_type' => $this->faker->numberBetween(1, 2),
                     'name' => $this->faker->sentence(4),
                     'price' => $this->faker->numberBetween(10000, 1000000)
@@ -132,7 +121,7 @@ class MasterFactory extends Factory
             }
 
             for ($i = 0; $i < 3; $i++) {
-                $review = $master->reviews()->create([
+                $review = $salon->reviews()->create([
                     'user_id' => User::inRandomOrder()->first()->id,
                     'rating' => $this->faker->numberBetween(1, 5),
                     'content' => $this->faker->sentence(10),
@@ -141,10 +130,6 @@ class MasterFactory extends Factory
                 $review->photos()->create([
                     'url' => 'https://picsum.photos/200/300'
                 ]);
-            }
-
-            if($this->faker->boolean(30)) {
-                $master->salons()->attach(Salon::query()->inRandomOrder()->first()->id);
             }
         });
     }
