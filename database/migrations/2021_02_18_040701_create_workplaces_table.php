@@ -15,7 +15,7 @@ class CreateWorkplacesTable extends Migration
     {
         Schema::create('workplaces', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('place')->default(\App\Models\Workplace::AT_MY_HOME);
+            $table->string('place')->default(\App\Models\Workplace::AT_MY_HOME);
 
             $table->unsignedBigInteger('workplaceable_id');
             $table->string('workplaceable_type');

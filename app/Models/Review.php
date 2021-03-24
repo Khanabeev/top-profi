@@ -19,9 +19,9 @@ class Review extends Model
         "status"
     ];
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_MODERATION = 2;
-    const STATUS_BANNED = 3;
+    const STATUS_ACTIVE = 'active';
+    const STATUS_MODERATION = 'moderation';
+    const STATUS_BANNED = 'banned';
 
 
     /**

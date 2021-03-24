@@ -19,7 +19,7 @@ class CreateServicesTable extends Migration
             $table->unsignedBigInteger('serviceable_id');
             $table->string('serviceable_type');
 
-            $table->unsignedTinyInteger('service_type')->nullable();
+            $table->string('service_type')->nullable();
             $table->string('name');
             $table->unsignedBigInteger('price');
             $table->boolean('is_active')->default(true);

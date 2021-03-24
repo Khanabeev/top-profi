@@ -23,7 +23,7 @@ class CreateReviewsTable extends Migration
 
             $table->unsignedTinyInteger('rating');
             $table->text('content')->nullable();
-            $table->unsignedTinyInteger('status')->default(\App\Models\Review::STATUS_MODERATION);
+            $table->string('status')->default(\App\Models\Review::STATUS_MODERATION);
 
             $table->timestamps();
 

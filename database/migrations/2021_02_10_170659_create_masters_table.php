@@ -18,9 +18,9 @@ class CreateMastersTable extends Migration
             $table->string("name");
             $table->string("email")->unique();
             $table->string("password");
-            $table->unsignedTinyInteger("status")->default(\App\Models\Master::STATUS_MODERATION);
+            $table->string("status")->default(\App\Models\Master::STATUS_MODERATION);
             $table->string("photo")->nullable();
-            $table->unsignedTinyInteger("gender")->default(\App\Models\Master::GENDER_FEMALE);
+            $table->string("gender")->default(\App\Models\Master::GENDER_FEMALE);
             $table->text("description")->nullable();
             $table->date("experience_from")->nullable();
             $table->boolean("is_working_with_men")->default(true);

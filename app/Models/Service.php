@@ -16,8 +16,8 @@ class Service extends Model
         'is_active'
     ];
 
-    const SERVICE_MANICURE = 1;
-    const SERVICE_PEDICURE = 2;
+    const SERVICE_MANICURE = 'manicure';
+    const SERVICE_PEDICURE = 'pedicure';
 
     /**
      * @return MorphTo

@@ -40,14 +40,14 @@ class Master extends Model
         "materials"
     ];
 
-    const STATUS_ACTIVE_PAID = 1;
-    const STATUS_ACTIVE_UNPAID = 2;
-    const STATUS_MODERATION = 3;
-    const STATUS_BANNED = 4;
-    const STATUS_PAUSED = 5;
+    const STATUS_ACTIVE_PAID = 'active-paid';
+    const STATUS_ACTIVE_UNPAID = 'active-unpaid';
+    const STATUS_MODERATION = 'moderation';
+    const STATUS_BANNED = 'banned';
+    const STATUS_PAUSED = 'paused';
 
-    const GENDER_FEMALE = 1;
-    const GENDER_MALE = 2;
+    const GENDER_FEMALE = 'female';
+    const GENDER_MALE = 'male';
 
     /**
      * @return BelongsToMany

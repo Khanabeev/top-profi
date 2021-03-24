@@ -10,9 +10,9 @@ class Workplace extends Model
 {
     use HasFactory;
 
-    const AT_MY_HOME = 1;
-    const AT_BEAUTY_SALON = 2;
-    const AT_YOUR_HOME = 3;
+    const AT_MY_HOME = 'my-home';
+    const AT_BEAUTY_SALON = 'beauty-salon';
+    const AT_YOUR_HOME = 'your-home';
 
     /**
      * @return MorphTo

@@ -19,7 +19,7 @@ class CreateSalonsTable extends Migration
             $table->string("name");
             $table->string("email")->unique();
             $table->string("password");
-            $table->unsignedTinyInteger("status")->default(\App\Models\Salon::STATUS_MODERATION);
+            $table->string("status")->default(\App\Models\Salon::STATUS_MODERATION);
             $table->string("photo")->nullable();
             $table->text("description")->nullable();
             $table->boolean("is_working_with_men")->default(true);
